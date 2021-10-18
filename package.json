@@ -1,0 +1,30 @@
+{
+  "name": "rapier-node",
+  "version": "0.7.6",
+  "main": "index.js",
+  "repository": "git@github.com:SupremeTechnopriest/rapier-node.git",
+  "author": "Randy Lebeau <randylebeau@gmail.com>",
+  "license": "Apache 2.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "node ./scripts/build.js",
+    "install:2d": "cd ./rapier2d-node && npm install",
+    "install:3d": "cd ./rapier3d-node && npm install",
+    "prebuild": "npm run install:2d && npm run install:3d",
+    "test": "node test/test.js",
+    "release:2d": "cd ./rapier2d-node && npm publish --access public",
+    "release:3d": "cd ./rapier3d-node && npm publish --access public",
+    "release": "npm run release:2d && npm run release:3d",
+    "dryrun:2d": "cd ./rapier2d-node && npm publish --access public --dry-run",
+    "dryrun:3d": "cd ./rapier3d-node && npm publish --access public --dry-run",
+    "dryrun": "npm run dryrun:2d && npm run dryrun:3d"
+  },
+  "devDependencies": {
+    "cpy": "^8.1.2",
+    "fs-extra": "^10.0.0",
+    "globby": "^9.2.0",
+    "ora": "^6.0.1",
+    "typescript": "^4.3.2"
+  }
+}

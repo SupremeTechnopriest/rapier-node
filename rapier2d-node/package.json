@@ -1,0 +1,11 @@
+{
+  "name": "rapier2d-node",
+  "version": "0.7.6",
+  "main": "dist/rapier.js",
+  "files": [
+    "dist"
+  ],
+  "repository": "git@github.com:SupremeTechnopriest/rapier-node.git",
+  "author": "Randy Lebeau <randylebeau@gmail.com>",
+  "license": "Apache 2.0"
+}
