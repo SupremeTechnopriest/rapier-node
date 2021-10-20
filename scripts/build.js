@@ -31,6 +31,7 @@ async function transformFilesForDimension (dir, is2d) {
 }
 
 (async () => {
+  const { version } = await fs.readJSON(resolve('./package.json'))
   const clearProgress = ora('Cleaning dist directories').start()
   try {
     await fs.emptyDir(OUTPUT_2D)
@@ -126,6 +127,25 @@ async function transformFilesForDimension (dir, is2d) {
     removeProgress.succeed()
   } catch (err) {
     removeProgress.fail()
+    throw err
+  }
+
+  /**
+   * Sync Versions
+   */
+  const versionSyncProgress = ora('Syncing package.json versions').start()
+  try {
+    const json2dPath = resolve('./rapier2d-node/package.json')
+    const json3dPath = resolve('./rapier3d-node/package.json')
+    const json2d = await fs.readJSON(json2dPath)
+    const json3d = await fs.readJSON(json3dPath)
+    json2d.version = version
+    json3d.version = version
+    await fs.writeJSON(json2dPath, json2d, { spaces: 2 })
+    await fs.writeJSON(json3dPath, json3d, { spaces: 2 })
+    versionSyncProgress.succeed()
+  } catch (err) {
+    versionSyncProgress.fail()
     throw err
   }
 
