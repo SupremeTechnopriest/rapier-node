@@ -1,6 +1,6 @@
 {
   "name": "rapier3d-node",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "main": "dist/rapier.js",
   "types": "dist/rapier.d.ts",
   "files": [
